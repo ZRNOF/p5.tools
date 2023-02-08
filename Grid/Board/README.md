@@ -30,7 +30,6 @@ function draw() {
 ## Demo
 [Board_demo - OpenProcessing](https://openprocessing.org/sketch/1796421)
 
-
 ---
 
 ## Functions
@@ -98,3 +97,5 @@ function draw() {
 * Set color & weight of inside border.
   * `inside_color`: color of inside border
   * `inside_weight`: weight of inside border
+
+---

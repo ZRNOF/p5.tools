@@ -1,3 +1,10 @@
+/*
+	MIT License
+	Copyright (c) 2023 Zaron
+	See LICENSE file for details.
+	https://github.com/ZRNOF/p5.js-Toolbox
+*/
+
 function Border(color, weight) {
   push();
   noFill();

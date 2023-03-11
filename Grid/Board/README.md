@@ -8,7 +8,7 @@ Can also be used for background decoration or other purposes.
 
 ---
 
-## Use
+## Usage
 ### Example
 ```js
 function setup() {
@@ -29,6 +29,8 @@ function draw() {
 
 ## Demo
 [Board_demo - OpenProcessing](https://openprocessing.org/sketch/1796421)
+
+<img src="https://github.com/ZRNOF/p5.js-Toolbox/blob/main/Grid/Board/board_example_Openprocessing.png" width="300" height="300">
 
 ---
 

@@ -43,24 +43,24 @@ function content(cell, w, h) {
 ## Demo
 [Grid_demo - OpenProcessing](https://openprocessing.org/sketch/1864179)
 
-<img src="https://github.com/ZRNOF/p5.js-Toolbox/blob/main/Grid/Grid/grid_example_OpenProcessing.png" width="300" height="300">
+<img src="https://github.com/ZRNOF/p5.js-Toolbox/blob/main/Grid/Grid/Grid_demo_OpenProcessing.png" width="300" height="300">
 
 ---
 
 ## Functions
 ### 1. `generate(content)`
-* Generate cell content of grid. content is a function that user define.
+* Generate cells content of grid. content is a function that user define.
 * The content function takes 3 things - `cell`, `w` and `h`:
   * `cell`: current cell that processing now
   * `w`: width of cell
   * `h`: height of cell
-* To define content function:
+* To define the content function:
 ```js
 function content(cell, w, h) {
   // Customize your cell content here
 }
 ```
-* See [Usage](https://github.com/ZRNOF/p5.js-Toolbox/tree/main/Grid/Grid#usage) and [demo](https://openprocessing.org/sketch/1864179) to see how this work
+* See [Usage](https://github.com/ZRNOF/p5.js-Toolbox/tree/main/Grid/Grid#usage) and [demo](https://openprocessing.org/sketch/1864179) to see how this work.
 
 ### 2. `set_grid({cols, rows, grid_w, grid_h, order}, reset=false)`
 * Set parameters of grid.
@@ -69,9 +69,13 @@ function content(cell, w, h) {
   * `grid_w`: width of grid
   * `grid_h`: height of grid
   * `order`: order of cells
-* Set reset value to true 
+* Set `reset` to `true` will make the grid update even if none of the parameter values have changed.
+* The default value of `reset` is `false`, which means that the grid will not update if none of the parameter values have changed.
 
 ### 3. `set_order(order)`
 * Set order of cells.
+* Valid values for `order`:
+  * `SHUFFLE`, `"LRTB"`, `"LRBT"`, `"RLTB"`, `"RLBT"`, `"TBLR"`, `"TBRL"`, `"BTLR"` and `"BTRL"`
+* The default value of `order` is `"SHUFFLE"`.
 
 ---

@@ -30,7 +30,7 @@ function draw() {
 ## Demo
 [Board_demo - OpenProcessing](https://openprocessing.org/sketch/1796421)
 
-<img src="https://github.com/ZRNOF/p5.js-Toolbox/blob/main/Grid/Board/Board_demo_Openprocessing.png" width="300" height="300">
+<img src="https://github.com/ZRNOF/p5.js-Toolbox/blob/main/Grid/Board/Board_demo.png" width="300" height="300">
 
 ---
 

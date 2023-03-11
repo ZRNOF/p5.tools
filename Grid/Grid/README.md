@@ -43,7 +43,7 @@ function content(cell, w, h) {
 ## Demo
 [Grid_demo - OpenProcessing](https://openprocessing.org/sketch/1864179)
 
-<img src="https://github.com/ZRNOF/p5.js-Toolbox/blob/main/Grid/Grid/Grid_demo_OpenProcessing.png" width="300" height="300">
+<img src="https://github.com/ZRNOF/p5.js-Toolbox/blob/main/Grid/Grid/Grid_demo.png" width="300" height="300">
 
 ---
 

@@ -51,10 +51,11 @@ function draw() {
 
 ## Functions
 
-### 1. `PressLoopToggle(btn)`
+### 1. `PressLoopToggle(btn, p5=null)`
 
 - Enables toggling between loop/noLoop when a specified key is pressed.
   - `btn`: the key to listen for
+  - `p5`: the p5.js sketch instance on which to toggle loop mode
 
 ### 2. `PressToggle(btn, func1, func2, func1Args = [], func2Args = [])`
 
@@ -72,9 +73,10 @@ function draw() {
   - `func`: the function to execute on key press
   - `args`: optional arguments for the function
 
-### 4. `ClickLoopToggle()`
+### 4. `ClickLoopToggle(p5=null)`
 
 - Enables toggling between loop/noLoop when a mouse click event occurs.
+  - `p5`: the p5.js sketch instance on which to toggle loop mode
 
 ### 5. `ClickToggle(func1, func2, func1Args = [], func2Args = [])`
 

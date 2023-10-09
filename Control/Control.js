@@ -9,12 +9,16 @@ const LOOP_TOGGLE = {
 	BY_CLICK: false,
 	BY_PRESS: false,
 	BUTTON: " ",
+	p5: null,
 	updateState: () => {
 		LOOP_TOGGLE.STATE = !LOOP_TOGGLE.STATE
 	},
 	toggle: () => {
-		if (LOOP_TOGGLE.STATE) loop()
-		else noLoop()
+		if (LOOP_TOGGLE.p5) {
+			LOOP_TOGGLE.p5[LOOP_TOGGLE.STATE ? "loop" : "noLoop"]()
+		} else {
+			LOOP_TOGGLE.STATE ? loop() : noLoop()
+		}
 	},
 }
 
@@ -45,8 +49,9 @@ const createDo = (_btn, _func, _args = []) => {
 	return { btn: _btn, run }
 }
 
-const ClickLoopToggle = () => {
+const ClickLoopToggle = (_p5 = null) => {
 	LOOP_TOGGLE.BY_CLICK = true
+	LOOP_TOGGLE.p5 = _p5
 }
 const ClickToggle = (_func1, _func2, _func1Args = [], _func2Args = []) => {
 	CLICK_TOGGLE_LIST.push(
@@ -70,9 +75,10 @@ document.addEventListener("mousedown", () => {
 	})
 })
 
-const PressLoopToggle = (_btn) => {
+const PressLoopToggle = (_btn, _p5 = null) => {
 	LOOP_TOGGLE.BY_PRESS = true
 	LOOP_TOGGLE.BUTTON = _btn
+	LOOP_TOGGLE.p5 = _p5
 }
 const PressToggle = (
 	_btn,

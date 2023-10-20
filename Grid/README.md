@@ -36,14 +36,14 @@ function content(cell, w, h) {
   pop();
 }
 ```
-<img src="https://github.com/ZRNOF/p5.js-Toolbox/blob/main/Grid/Grid/grid_example.png" width="300" height="300">
+<img src="https://github.com/ZRNOF/p5.js-Toolbox/blob/main/Grid/grid_example.png" width="300" height="300">
 
 ---
 
 ## Demo
 [Grid_demo - OpenProcessing](https://openprocessing.org/sketch/1864179)
 
-<img src="https://github.com/ZRNOF/p5.js-Toolbox/blob/main/Grid/Grid/Grid_demo.png" width="300" height="300">
+<img src="https://github.com/ZRNOF/p5.js-Toolbox/blob/main/Grid/Grid_demo.png" width="300" height="300">
 
 ---
 

@@ -23,14 +23,14 @@ function draw() {
   cell.board();  // Show board
 }
 ```
-<img src="https://github.com/ZRNOF/p5.js-Toolbox/blob/main/Grid/Board/board_example.png" width="300" height="300">
+<img src="https://github.com/ZRNOF/p5.js-Toolbox/blob/main/Decoration/Board/board_example.png" width="300" height="300">
 
 ---
 
 ## Demo
 [Board_demo - OpenProcessing](https://openprocessing.org/sketch/1796421)
 
-<img src="https://github.com/ZRNOF/p5.js-Toolbox/blob/main/Grid/Board/Board_demo.png" width="300" height="300">
+<img src="https://github.com/ZRNOF/p5.js-Toolbox/blob/main/Decoration/Board/Board_demo.png" width="300" height="300">
 
 ---
 

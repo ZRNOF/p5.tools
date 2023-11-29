@@ -32,4 +32,14 @@ const mapFunc = `
 	vec3 mapClamp(vec3 value, vec3 iMin, vec3 iMax, vec3 oMin, vec3 oMax) {
 		return clamp((value-iMin)*(oMax-oMin)/(iMax-iMin)+oMin, oMin, oMax);
 	}
+
+	// 4D map without clamp
+	vec4 map(vec4 value, vec4 iMin, vec4 iMax, vec4 oMin, vec4 oMax) {
+		return (value-iMin)*(oMax-oMin)/(iMax-iMin)+oMin;
+	}
+
+	// 4D map with clamp
+	vec4 mapClamp(vec4 value, vec4 iMin, vec4 iMax, vec4 oMin, vec4 oMax) {
+		return clamp((value-iMin)*(oMax-oMin)/(iMax-iMin)+oMin, oMin, oMax);
+	}
 `

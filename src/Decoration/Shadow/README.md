@@ -28,7 +28,7 @@ function setup() {
 }
 ```
 
-<img src="https://github.com/ZRNOF/p5.js-Toolbox/blob/main/Decoration/Shadow/Shadow_Example.png" width="300" height="300">
+<img src="https://github.com/ZRNOF/p5.tools/blob/main/src/Decoration/Shadow/example.png" width="300" height="300">
 
 ---
 
@@ -36,7 +36,7 @@ function setup() {
 
 [Shadow Demo - OpenProcessing](https://openprocessing.org/sketch/1991418)
 
-<img src="https://github.com/ZRNOF/p5.js-Toolbox/blob/main/Decoration/Shadow/Shadow_Demo.png" width="300" height="300">
+<img src="https://github.com/ZRNOF/p5.tools/blob/main/src/Decoration/Shadow/demo.png" width="300" height="300">
 
 ---
 

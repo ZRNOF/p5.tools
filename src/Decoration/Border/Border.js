@@ -4,13 +4,7 @@
 // The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-/**
- * Canvas Border
- * @param { p5 } p - p5
- * @param { string | number } color - border color
- * @param { number } width - border width
- */
-export const Border = (p, color, width) => {
+const Border = (p, color, width) => {
 	p.push()
 	p.noFill()
 	p.stroke(p.color(color))
@@ -19,3 +13,16 @@ export const Border = (p, color, width) => {
 	p.rect(p.width / 2, p.height / 2, p.width, p.height)
 	p.pop()
 }
+
+const mountBorder = (p5) => {
+	/**
+	 * Canvas Border
+	 * @param { string | number } color - border color
+	 * @param { number } width - border width
+	 */
+	p5.prototype.Border = function (color, width) {
+		Border(this, color, width)
+	}
+}
+
+export default mountBorder

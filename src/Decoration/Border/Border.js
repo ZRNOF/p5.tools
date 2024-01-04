@@ -14,6 +14,10 @@ const Border = (p, color, width) => {
 	p.pop()
 }
 
+/**
+ * Mount Border to p5
+ * @param {p5} p5 - p5
+ */
 const mountBorder = (p5) => {
 	/**
 	 * Canvas Border

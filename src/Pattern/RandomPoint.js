@@ -1,5 +1,5 @@
 // MIT License
-// Copyright © 2023 Zaron Chen
+// Copyright © 2024 Zaron Chen
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 // The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
@@ -7,11 +7,11 @@
 /**
  * Random point rectangle
  * Use stroke() & strokeWeight() to style points
- * @param {number} posX - x position
- * @param {number} posY - y position
- * @param {number} w - width
- * @param {number} h - height
- * @param {number} num - number of random points
+ * @param { number } posX - x position
+ * @param { number } posY - y position
+ * @param { number } w - width
+ * @param { number } h - height
+ * @param { number } num - number of random points
  */
 const rpRect = (p, posX, posY, w, h, num) => {
 	const mode = p._renderer._rectMode
@@ -30,10 +30,10 @@ const rpRect = (p, posX, posY, w, h, num) => {
 /**
  * Random point square
  * Use stroke() & strokeWeight() to style points
- * @param {number} posX - x position
- * @param {number} posY - y position
- * @param {number} s - size
- * @param {number } num - number of random points
+ * @param { number } posX - x position
+ * @param { number } posY - y position
+ * @param { number } s - size
+ * @param { number } num - number of random points
  */
 const rpSquare = (p, posX, posY, s, num) => {
 	rpRect(p, posX, posY, s, s, num)
@@ -42,11 +42,11 @@ const rpSquare = (p, posX, posY, s, num) => {
 /**
  * Random point ellipse
  * Use stroke() & strokeWeight() to style points
- * @param {number} posX - x position
- * @param {number} posY -y position
- * @param {number} w - width
- * @param {number} h - height
- * @param {number} num - number of random points
+ * @param { number } posX - x position
+ * @param { number } posY -y position
+ * @param { number } w - width
+ * @param { number } h - height
+ * @param { number } num - number of random points
  */
 const rpEllipse = (p, posX, posY, w, h, num) => {
 	p.push()
@@ -64,10 +64,10 @@ const rpEllipse = (p, posX, posY, w, h, num) => {
 /**
  * Random point circle
  * Use stroke() & strokeWeight() to style points
- * @param {number} posX - x position
- * @param {number} posY - y position
- * @param {number} r - radius
- * @param {number} num - number of random points
+ * @param { number } posX - x position
+ * @param { number } posY - y position
+ * @param { number } r - radius
+ * @param { number } num - number of random points
  */
 const rpCircle = (p, posX, posY, r, num) => {
 	rpEllipse(p, posX, posY, r, r, num)
@@ -76,12 +76,12 @@ const rpCircle = (p, posX, posY, r, num) => {
 /**
  * Random point vertical gradient rectangle
  * Use fill() to color points
- * @param {number} posX - x position
- * @param {number} posY - y position
- * @param {number} w - width
- * @param {number} h - height
- * @param {number} strength - strength
- * @param {p5.BT | p5.TB} rule - gradient rule, BT(Bottom to Top, default) | TB(Top to Bottom)
+ * @param { number } posX - x position
+ * @param { number } posY - y position
+ * @param { number } w - width
+ * @param { number } h - height
+ * @param { number } strength - strength
+ * @param { p5.BT | p5.TB } rule - gradient rule, BT(Bottom to Top, default) | TB(Top to Bottom)
  */
 const rpVerGradRect = (p, posX, posY, w, h, strength, rule) => {
 	const mode = p._renderer._rectMode
@@ -111,12 +111,12 @@ const rpVerGradRect = (p, posX, posY, w, h, strength, rule) => {
 /**
  * Random point horizontal gradient rectangle
  * Use fill() to color points
- * @param {number} posX - x position
- * @param {number} posY - y position
- * @param {number} w - width
- * @param {number} h - height
- * @param {number} strength - strength
- * @param {p5.RL | p5.LR} rule - gradient rule, RL(Right to Left, default) | LR(Left to Right)
+ * @param { number } posX - x position
+ * @param { number } posY - y position
+ * @param { number } w - width
+ * @param { number } h - height
+ * @param { number } strength - strength
+ * @param { p5.RL | p5.LR } rule - gradient rule, RL(Right to Left, default) | LR(Left to Right)
  */
 const rpHorGradRect = (p, posX, posY, w, h, strength, rule) => {
 	const mode = p._renderer._rectMode
@@ -145,7 +145,7 @@ const rpHorGradRect = (p, posX, posY, w, h, strength, rule) => {
 
 /**
  * Mount RandomPoint to p5
- * @param {p5} p5 - p5
+ * @param { p5 } p5 - p5
  */
 export const mountRP = (p5) => {
 	p5.prototype.rpRect = function (posX, posY, w, h, num) {

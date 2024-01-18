@@ -1,128 +1,150 @@
 // MIT License
-// Copyright © 2023 Zaron
+// Copyright © 2024 Zaron
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 // The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 class Grid {
-	constructor({
-		cols,
-		rows,
-		grid_w = width,
-		grid_h = height,
-		order = "SHUFFLE",
-		layer = globalThis,
-	}) {
-		this.init(cols, rows, grid_w, grid_h, order, layer)
+	constructor({ p, cols, rows, grid_w, grid_h, order }) {
+		this._init(p, cols, rows, grid_w, grid_h, order)
 	}
 
-	init(cols, rows, grid_w, grid_h, order, layer) {
-		this.cols = floor(cols)
-		this.rows = floor(rows)
-		this.grid_w = grid_w
-		this.grid_h = grid_h
-		this.cell_w = this.grid_w / cols
-		this.cell_h = this.grid_h / rows
+	_init(p, cols, rows, grid_w, grid_h, order) {
+		this.p = p
+		this.cols = Math.floor(cols)
+		this.rows = Math.floor(rows)
+		this.gridW = grid_w
+		this.gridH = grid_h
+		this.cellW = this.gridW / cols
+		this.cellH = this.gridH / rows
 		this.cells = []
-		this.isReset = true
-		this.order = order
-		this.set_order(this.order)
-		this.layer = layer
+		this._isReset = true
+		this._order = order
+		this.order(this._order)
 	}
 
+	/**
+	 * Generate cells content of grid
+	 * @param { Function } content - a function that user define
+	 */
 	generate(content) {
-		for (let id = 0; id < this.cells.length; id++) {
-			this.layer.push()
-			let x = this.cells[id].col
-			let y = this.cells[id].row
-			this.layer.translate(x * this.cell_w, y * this.cell_h)
-			content(this.cells[id], this.cell_w, this.cell_h)
-			this.layer.pop()
+		for (const cell of this.cells) {
+			this.p.push()
+			this.p.translate(cell.col * this.cellW, cell.row * this.cellH)
+			content({ w: this.cellW, h: this.cellH, ...cell })
+			this.p.pop()
 		}
 	}
 
-	setGridLayer(layer = globalThis) {
-		this.layer = layer
-	}
-
-	set_grid(
+	/**
+	 * Set parameters of grid
+	 * @param { object } GridProperties - Grid properties
+	 * @param { boolean } reset - Set `reset` to `true` will make the grid update even if none of the parameter values have changed. The default value of `reset` is `false`
+	 */
+	config(
 		{
 			cols = this.cols,
 			rows = this.rows,
-			grid_w = this.grid_w,
-			grid_h = this.grid_h,
-			order = this.order,
+			grid_w = this.gridW,
+			grid_h = this.gridH,
+			order = this._order,
 		},
 		reset = false
 	) {
-		let isSame =
-			this.cols == cols &&
-			this.rows == rows &&
-			this.grid_w == grid_w &&
-			this.grid_h == grid_h &&
-			this.order == order
-		if (!(isSame && !reset)) {
-			this.init(cols, rows, grid_w, grid_h, order)
-		} else {
-			this.isReset = false
-		}
+		const isSame =
+			this.cols === cols &&
+			this.rows === rows &&
+			this.gridW === grid_w &&
+			this.gridH === grid_h &&
+			this._order === order
+		if (!isSame || reset) this._init(this.p, cols, rows, grid_w, grid_h, order)
+		else this._isReset = false
 	}
 
-	set_order(order) {
-		this.order = order
-		if (this.order == "SHUFFLE") {
-			this.shuffle_order()
-		} else {
-			this.order_by_(this.order)
-		}
+	/**
+	 * Set order of cells
+	 * @param { p5.SHUFFLE | p5.LRTB | p5.LRBT | p5.RLTB | p5.RLBT | p5.TBLR | p5.TBRL | p5.BTLR | p5.BTRL } order
+	 */
+	order(order) {
+		this._order = order
+		if (this._order === this.p.SHUFFLE) this._shuffleOrder()
+		else this._orderBy(this._order)
 	}
 
-	shuffle_order() {
-		let numbers = Array.from({ length: this.cols * this.rows }, (_, i) => i)
-		shuffle(numbers, true)
+	_shuffleOrder() {
+		const numbers = Array.from({ length: this.cols * this.rows }, (_, i) => i)
+		this.p.shuffle(numbers, true)
 		for (let x = 0; x < this.cols; x++) {
 			for (let y = 0; y < this.rows; y++) {
-				this.set_cell(x, y, numbers[x * this.rows + y])
+				this._setCell(x, y, numbers[x * this.rows + y])
 			}
 		}
 	}
 
-	order_by_(order) {
-		let fst_order = order.slice(0, 2)
-		let sec_order = order.slice(2, 4)
+	_orderBy(order) {
+		const fst_order = order.slice(0, 2)
+		const sec_order = order.slice(2, 4)
 		for (let x = 0; x < this.cols; x++) {
 			for (let y = 0; y < this.rows; y++) {
-				let fst = { TB: y, BT: this.rows - y - 1, LR: x, RL: this.cols - x - 1 }
-				let sec = {
+				const fst = {
+					TB: y,
+					BT: this.rows - y - 1,
+					LR: x,
+					RL: this.cols - x - 1,
+				}
+				const sec = {
 					TB: y * this.cols,
 					BT: (this.rows - y - 1) * this.cols,
 					LR: x * this.rows,
 					RL: (this.cols - x - 1) * this.rows,
 				}
-				this.set_cell(x, y, fst[fst_order] + sec[sec_order])
+				this._setCell(x, y, fst[fst_order] + sec[sec_order])
 			}
 		}
 	}
 
-	set_cell(x, y, id) {
-		if (this.cells[id] != undefined) {
-			this.cell_update(x, y, id)
-		} else {
-			this.cell_init(x, y, id)
-		}
+	_setCell(x, y, id) {
+		if (this.cells[id] !== undefined) this._updateCell(x, y, id)
+		else this._initCell(x, y, id)
 	}
 
-	cell_init(x, y, id) {
-		this.cells[id] = {
-			col: x,
-			row: y,
-			id: id,
-		}
+	_initCell(x, y, id) {
+		this.cells[id] = { id, col: x, row: y }
 	}
 
-	cell_update(x, y, id) {
+	_updateCell(x, y, id) {
+		this.cells[id].id = id
 		this.cells[id].col = x
 		this.cells[id].row = y
-		this.cells[id].id = id
 	}
+}
+
+/**
+ * Mount Grid to p5
+ * @param { p5 } p5 - p5
+ */
+export const mountGrid = (p5) => {
+	/**
+	 * Create Grid object
+	 * @param { object } GridProperties - Grid properties
+	 * @returns { Grid } A new instance of the Grid class
+	 */
+	p5.prototype.Grid = function ({
+		cols,
+		rows,
+		grid_w = this._renderer.width,
+		grid_h = this._renderer.height,
+		order = this.SHUFFLE,
+	}) {
+		return new Grid({ p: this, cols, rows, grid_w, grid_h, order })
+	}
+	p5.prototype.TBRL = "TBRL"
+	p5.prototype.TBLR = "TBLR"
+	p5.prototype.BTRL = "BTRL"
+	p5.prototype.BTLR = "BTLR"
+	p5.prototype.RLTB = "RLTB"
+	p5.prototype.RLBT = "RLBT"
+	p5.prototype.LRTB = "LRTB"
+	p5.prototype.LRBT = "LRBT"
+	p5.prototype.SHUFFLE = "SHUFFLE"
 }

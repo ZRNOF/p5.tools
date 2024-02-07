@@ -1,5 +1,5 @@
 // MIT License
-// Copyright © 2024 Zaron
+// Copyright © 2024 Zaron Chen
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 // The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
@@ -69,6 +69,17 @@ class Grid {
 		this._order = order
 		if (this._order === this.p.SHUFFLE) this._shuffleOrder()
 		else this._orderBy(this._order)
+	}
+
+	/**
+	 * Calculate ID for a cell based on its column and row position
+	 * @param { number } col - The column index of the cell
+	 * @param { number } row - The row index of the cell
+	 * @returns { number } The calculated cell ID, or -1 if the provided column or row is out of bounds
+	 */
+	getID(col, row) {
+		if (col < 0 || row < 0 || col >= this.cols || row >= this.rows) return -1
+		return col + row * this.cols
 	}
 
 	_shuffleOrder() {

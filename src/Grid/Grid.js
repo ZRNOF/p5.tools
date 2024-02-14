@@ -5,16 +5,16 @@
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 class Grid {
-	constructor({ p, cols, rows, grid_w, grid_h, order }) {
-		this._init(p, cols, rows, grid_w, grid_h, order)
+	constructor({ p, cols, rows, gridW, gridH, order }) {
+		this._init(p, cols, rows, gridW, gridH, order)
 	}
 
-	_init(p, cols, rows, grid_w, grid_h, order) {
+	_init(p, cols, rows, gridW, gridH, order) {
 		this.p = p
 		this.cols = Math.floor(cols)
 		this.rows = Math.floor(rows)
-		this.gridW = grid_w
-		this.gridH = grid_h
+		this.gridW = gridW
+		this.gridH = gridH
 		this.cellW = this.gridW / cols
 		this.cellH = this.gridH / rows
 		this.cells = []
@@ -45,8 +45,8 @@ class Grid {
 		{
 			cols = this.cols,
 			rows = this.rows,
-			grid_w = this.gridW,
-			grid_h = this.gridH,
+			gridW = this.gridW,
+			gridH = this.gridH,
 			order = this._order,
 		},
 		reset = false
@@ -54,10 +54,10 @@ class Grid {
 		const isSame =
 			this.cols === cols &&
 			this.rows === rows &&
-			this.gridW === grid_w &&
-			this.gridH === grid_h &&
+			this.gridW === gridW &&
+			this.gridH === gridH &&
 			this._order === order
-		if (!isSame || reset) this._init(this.p, cols, rows, grid_w, grid_h, order)
+		if (!isSame || reset) this._init(this.p, cols, rows, gridW, gridH, order)
 		else this._isReset = false
 	}
 
@@ -143,11 +143,11 @@ export const mountGrid = (p5) => {
 	p5.prototype.Grid = function ({
 		cols,
 		rows,
-		grid_w = this._renderer.width,
-		grid_h = this._renderer.height,
+		gridW = this._renderer.width,
+		gridH = this._renderer.height,
 		order = this.SHUFFLE,
 	}) {
-		return new Grid({ p: this, cols, rows, grid_w, grid_h, order })
+		return new Grid({ p: this, cols, rows, gridW, gridH, order })
 	}
 	p5.prototype.TBRL = "TBRL"
 	p5.prototype.TBLR = "TBLR"
